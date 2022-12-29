@@ -1,9 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { timeValue } from "../App";
+import { restartContext } from "../App";
 
-
-const CountDown = ({minutes, seconds, isPaused, timeIsOut}) => {
+const CountDown = ({isPaused, timeIsOut,}) => {
     const [over, setOver] = useState(false);
-    const [[m, s], setTime] = useState([minutes, seconds]);
+    const timer = useContext(timeValue);
+    const [[m, s], setTime] = useState(timer);
+    const isRestart = useContext(restartContext);
+    
+    useEffect(() => {
+      setTime(timer)
+    },timer)
+
+    useEffect(() => {
+      setOver(true)
+    },[isRestart])
 
     const tick = () => {
       if (isPaused) return
@@ -18,13 +29,14 @@ const CountDown = ({minutes, seconds, isPaused, timeIsOut}) => {
         setTime([m, s - 1]);
       }
     };
-  
+
     useEffect(() => {
       const timerID = setInterval(() => tick(), 1000);
       return () => clearInterval(timerID);
     });
   
     return (
+
         <div>
           <p>{`${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`}</p>
         </div>
