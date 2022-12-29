@@ -1,15 +1,13 @@
-import React, {useContext, useState} from "react";
-import { pauseContext } from "../App";
+import React, { useState, useContext} from "react";
 import PlayerBox from "./PlayerBox";
-
+import { restartContext, timeValue } from "../App";
 const UserRoom = ({players, roomID, refreshRooms ,current}) => {
 
     const [members, setMembers] = useState(players)
-    const pausing = useContext(pauseContext);
     const passTurn = () => {
         refreshRooms()
     }
-
+    
     return (
       
       <div className="userRoom">
@@ -23,6 +21,7 @@ const UserRoom = ({players, roomID, refreshRooms ,current}) => {
         </h2>
         <div className='container'>
             {members.map((item) => 
+
               <PlayerBox
               user={item}
               

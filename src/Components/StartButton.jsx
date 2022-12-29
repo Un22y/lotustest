@@ -1,11 +1,13 @@
 import React from "react";
 
-const StartButton = ({paused,switchStart}) => {
+const StartButton = ({ended,paused,switchStart,restartApp}) => {
     return (
         <>
-            <button onClick={switchStart}>
-                {paused ? 'Start spectating' : 'Pause'}
-            </button>
+            {
+                ended
+                ?<button onClick={restartApp}>Restart</button>
+                : <button onClick={switchStart}>{paused ? 'Start spectating' : 'Pause'}</button>
+            }
         </>
     )
 }
