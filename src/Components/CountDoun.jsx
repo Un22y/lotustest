@@ -13,7 +13,7 @@ const CountDown = ({isPaused, timeIsOut,}) => {
     },timer)
 
     useEffect(() => {
-      setOver(true)
+      setOver(false)
     },[isRestart])
 
     const tick = () => {
