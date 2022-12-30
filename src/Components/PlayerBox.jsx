@@ -7,7 +7,7 @@ import '../App.css';
 const PlayerBox = ({user, passTurn, roomID, currentPlayer}) => {
     
     const timeIsOut = () => {
-        user.inGame = false;
+        user.inGame = !user.inGame;
         passTurn();
     }
 
